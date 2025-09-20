@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "author": "Alexandre Kovaleski Rocha",
+  "editor": "wokwi",
+  "parts": [
+    {
+      "type": "board-esp32-devkit-c-v4",
+      "id": "esp",
+      "top": 0,
+      "left": 0,
+      "attrs": { "env": "micropython-20231227-v1.22.0" }
+    },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -143.7,
+      "left": -91.8,
+      "attrs": { "humidity": "35", "temperature": "5.5" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -61.2,
+      "left": 205.4,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": 284.8,
+      "left": -80.8,
+      "attrs": { "pins": "i2c" }
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:5V", "red", [ "v0" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp:2", "green", [ "v19.2", "h182.5", "v172.8" ] ],
+    [ "led1:C", "esp:GND.2", "white", [ "v0" ] ],
+    [ "led1:A", "esp:4", "orange", [ "v0" ] ],
+    [ "lcd1:VCC", "esp:3V3", "cyan", [ "h-19.2", "v-297.5" ] ],
+    [
+      "lcd1:GND",
+      "esp:GND.3",
+      "violet",
+      [ "h-9.6", "v-96", "h220.8", "v-115.2", "h0", "v-19.2" ]
+    ],
+    [ "lcd1:SDA", "esp:21", "gray", [ "h-28.8", "v-105.4", "h249.6", "v-153.6" ] ],
+    [ "lcd1:SCL", "esp:22", "#8f4814", [ "h-38.4", "v-105.3", "h268.8", "v-192" ] ]
+  ],
+  "dependencies": {}
+}
